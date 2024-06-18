@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "536736038382",
+    "project_id": "practica02-vasquez-yauri",
+    "storage_bucket": "practica02-vasquez-yauri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:536736038382:android:3be899c7c74f00464362ff",
+        "android_client_info": {
+          "package_name": "com.example.practica02_vasquez_yauri"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeu1UtPDZsa0a_qmBh5OLkWCN_OyzvgNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
