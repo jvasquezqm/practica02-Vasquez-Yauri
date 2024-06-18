@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_resgisterPlayer">
+    <fragment
+        android:id="@+id/nav_resgisterPlayer"
+        android:name="com.example.practica02_vasquez_yauri.ui.fragments.RegisterPlayerFragment"
+        android:label="fragment_register_player"
+        tools:layout="@layout/fragment_register_player" />
+    <fragment
+        android:id="@+id/nav_gestionPlayer"
+        android:name="com.example.practica02_vasquez_yauri.ui.fragments.GestionPlayerFragment"
+        android:label="fragment_gestion_player"
+        tools:layout="@layout/fragment_gestion_player" />
+</navigation>
