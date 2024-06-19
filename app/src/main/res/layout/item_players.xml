@@ -7,8 +7,8 @@
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="8dp"
-    app:cardBackgroundColor="#DFC59D24"
-    android:background="@android:color/white">
+    app:cardBackgroundColor="#4169E1"
+    android:background="@drawable/cardview_border">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +69,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="15sp"
-
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -91,11 +92,13 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="16sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/tvDorsalP"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvNameP"
 
+            app:layout_constraintTop_toBottomOf="@+id/tvNameP"
             tools:text="Posición" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

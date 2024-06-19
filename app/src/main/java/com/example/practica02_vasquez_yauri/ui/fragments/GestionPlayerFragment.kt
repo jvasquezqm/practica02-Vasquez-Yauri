@@ -1,60 +1,87 @@
 package com.example.practica02_vasquez_yauri.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.practica02_vasquez_yauri.R
+import com.example.practica02_vasquez_yauri.adapter.PlayerAdapter
+import com.example.practica02_vasquez_yauri.model.PlayerModel
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [GestionPlayerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GestionPlayerFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gestion_player, container, false)
+        val View:View= inflater.inflate(R.layout.fragment_gestion_player, container, false)
+
+
+        val svPlayer: SearchView =View.findViewById(R.id.svPlayer)
+
+        val db = FirebaseFirestore.getInstance()
+        var lstPlayers: List<PlayerModel> = listOf()
+        var rvPlayer: RecyclerView = View.findViewById(R.id.rvPlayersAll)
+
+        db.collection("Jugadores")
+
+            .addSnapshotListener() { snap, error ->
+                if (error != null) {
+                    Log.e("Firestore Error", error.message.toString())
+                    return@addSnapshotListener
+                }
+                lstPlayers = snap!!.documents.map {document ->
+
+                    PlayerModel(
+                        document.id,
+                        document["country"].toString(),
+                        document["name"].toString(),
+                        document["equipo"].toString(),
+                        document["position"].toString(),
+                        document["dorsal"].toString(),
+                        document["foto"].toString()
+
+
+                    )
+                }
+                rvPlayer.adapter = PlayerAdapter(lstPlayers)
+                rvPlayer.layoutManager = GridLayoutManager(requireContext(), 2)
+                //rvPlayer.layoutManager = LinearLayoutManager(requireContext())
+            }
+        //buscar jugadores dentro del recyclerview desde  svPlayer
+        svPlayer.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText!!.isNotEmpty()) {
+                    rvPlayer.adapter = PlayerAdapter(lstPlayers.filter { player ->
+                        player.name.contains(newText.toString(), ignoreCase = true)
+                    })
+                } else {
+                    rvPlayer.adapter = PlayerAdapter(lstPlayers)
+                }
+                return true
+            }
+        })
+
+
+
+        return View
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GestionPlayerFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GestionPlayerFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
+
+
 }
