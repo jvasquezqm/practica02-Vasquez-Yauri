@@ -2,6 +2,7 @@ package com.example.practica02_vasquez_yauri
 
 import android.os.Bundle
 import android.view.Menu
+import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -13,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.practica02_vasquez_yauri.R
 import com.example.practica02_vasquez_yauri.databinding.ActivityPrincipalBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -41,6 +43,15 @@ class PrincipalActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val navigationView: NavigationView = binding.navView
+        val headerView = navigationView.getHeaderView(0)
+        val tvEmail: TextView = headerView.findViewById(R.id.tvEmailNav)
+
+        val user = FirebaseAuth.getInstance().currentUser
+        user?.let {
+            tvEmail.text = user.email
+        }
 
         // Cambia el título del ActionBar según el destino actual
         navController.addOnDestinationChangedListener { _, destination, _ ->

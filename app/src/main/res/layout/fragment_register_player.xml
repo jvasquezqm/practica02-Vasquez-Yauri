@@ -4,21 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F2F2"
     tools:context=".ui.fragments.RegisterPlayerFragment">
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvTitle"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:text="Registrar Jugador"-->
-<!--        android:textSize="24sp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/tvCountry"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
 
     <TextView
         android:id="@+id/tvCountry"
@@ -120,6 +107,7 @@
         android:layout_marginStart="41dp"
         android:layout_marginEnd="41dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#003366"
         android:text="Guardar Jugador"
         app:layout_constraintBottom_toTopOf="@+id/rvListPlayers"
         app:layout_constraintEnd_toEndOf="parent"
